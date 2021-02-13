@@ -1,0 +1,13 @@
+server:
+  port: 5000
+  error:
+    include-message: always
+
+spring:
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+hireme:
+  integration:
+    pokeapi-uri: https://pokeapi.co/api
+    shakespearetran-api: https://funtranslations.com/api
