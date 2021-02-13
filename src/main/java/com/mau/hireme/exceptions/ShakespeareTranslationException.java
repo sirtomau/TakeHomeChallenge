@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_GATEWAY)
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502
-public class PokeApiCallFailedException extends RuntimeException {
-    public PokeApiCallFailedException() {
-        super("Issues invoking pokeapi");
+public class ShakespeareTranslationException extends RuntimeException {
+    public ShakespeareTranslationException() {
+        super("Problems invoking the Shakespeare translation service");
     }
 }

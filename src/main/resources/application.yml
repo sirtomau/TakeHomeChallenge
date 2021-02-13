@@ -9,5 +9,9 @@ spring:
 
 hireme:
   integration:
-    pokeapi-uri: https://pokeapi.co/api
-    shakespearetran-api: https://funtranslations.com/api
+    pokeapi:
+      base-uri: https://pokeapi.co/api
+    shakespearetran-api:
+      base-uri: https://api.funtranslations.com/translate
+      # Enabled was introduced to avoid consuming all the daily free calls
+      enabled: true

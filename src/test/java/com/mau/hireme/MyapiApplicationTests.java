@@ -26,7 +26,7 @@ class MyapiApplicationTests {
 
     private static final String responseForCharizard = "{\"name\":\"charizard\",\"description\":\"Charizard flies around the " +
             "sky in search of powerful opponents.\\nIt breathes fire of such great heat that it melts anything.\\nHowever, " +
-            "it never turns its fiery breath on any opponent\\nweaker than itself. - still to be translated\"}";
+            "it never turns its fiery breath on any opponent\\nweaker than itself.\"}";
 
     @Test
     void contextLoads() {

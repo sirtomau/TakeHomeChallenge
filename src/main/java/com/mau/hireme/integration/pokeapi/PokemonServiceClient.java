@@ -21,8 +21,8 @@ public class PokemonServiceClient implements IPokemonServiceClient {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("${hireme.integration.pokeapi-uri}")
-    private String pokeapiUri;
+    @Value("${hireme.integration.pokeapi.base-uri}/v2/pokemon-species/")
+    private String uri;
 
     @Override
     public String getDescription(String name) {
@@ -36,7 +36,7 @@ public class PokemonServiceClient implements IPokemonServiceClient {
         // IMPORTANT: refer to the email sent to Oliver on 12/02/2020 with the
         // question about the location and cardinality of the pokemon's description.
 
-        String target = pokeapiUri + "/v2/pokemon-species/" +name;
+        String target = uri+name;
 
         ResponseEntity<PokemonSpecies> response = null;
 
