@@ -1,6 +1,7 @@
 package com.mau.hireme.integration.transapi;
 
 import com.mau.hireme.HireMeApplication;
+import com.mau.hireme.exceptions.ShakespeareTranslationExceededException;
 import com.mau.hireme.exceptions.ShakespeareTranslationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -52,6 +54,11 @@ public class TranslationServiceClient implements ITranslationServiceClient {
             try {
                 response = restTemplate.postForEntity(uri, request, Translation.class);
             } catch (RestClientException e) {
+
+                if ((e instanceof HttpClientErrorException.TooManyRequests)) {
+                    throw new ShakespeareTranslationExceededException(text);
+                }
+
                 // Whatever exception we get we map it into our own, so that it gets mapped into
                 // our own error message protecting our end user from messages coming from backend systems
                 logger.error("Error while invoking the Shakespeare translator: "+e.getLocalizedMessage());
@@ -60,7 +67,7 @@ public class TranslationServiceClient implements ITranslationServiceClient {
 
             return response.getBody().getContents().getTranslated();
         } else {
-            return "The translation for '"+text+"' did not happen because the access to the Shakespeare translation service is temporarily disabled";
+            return "The translation for '"+text+"' did not happen because the access to the Shakespeare translation service is disabled";
         }
 
     }

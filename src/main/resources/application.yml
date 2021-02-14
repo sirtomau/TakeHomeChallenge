@@ -25,7 +25,7 @@ hireme:
       base-uri: https://api.funtranslations.com/translate
       # Enabled was introduced to avoid consuming all the daily free calls, if false the call to the Shakespeare
       # translation API won't be made and NOT translated text, with a warning, will be returned
-      enabled: false
+      enabled: true
 
 logging:
   level:

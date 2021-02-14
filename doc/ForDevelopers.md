@@ -19,6 +19,7 @@ mcv --> services --> integration
 
 Note that in the "api" package only the "rest/open" package includes code. The other packages were added (as a possible option) in case the
 micro-service should become "multi-protocol", or provide also some sort of "premium" secured access beside the free and open one.
+The various entry points could all share the same services and just act as protocol mappers.
 ### Configuration of the application
 The "resources" folder includes an "application.yml" file defining the properties that the application relies on.
 Comments are present where needed.
@@ -55,22 +56,14 @@ Error while invoking the Shakespeare translator:
 }
 }]
 ```
-In order to keep using/testing the application after that, you can set the property "hireme.integration.shakespearetran-api.enable"
-to false in application.yml. The Pokemon's description would be returned but not translated.  
-If number of calls exceeded and property set to true the response will be:
+That error is mapped by the pokemon translation app into:
 ```
-{
-"timestamp": "2021-02-14T14:46:31.179+00:00",
-"status": 502,
-"error": "Bad Gateway",
-"message": "Problems invoking the Shakespeare translation service, try later",
-"path": "/pokemon/snorlax"
-}
+{"timestamp":"2021-02-14T16:44:04.982+00:00",
+"status":429,"error":"Too Many Requests",
+"message":"'Charizard flies around the sky in search of powerful opponents.\nIt breathes fire of such great heat that it melts anything.\nHowever,
+it never turns its fiery breath on any opponent\nweaker than itself.' - not translated because the limit on the translation service has been exceeded,
+retry later","path":"/pokemon/charizard"}
 ```
-If number of calls exceeded and property set to false the response will be:
-```
-{
-"name": "snorlax",
-"description": "The translation for 'Snorlax’s typical day consists of nothing more than eating and\nsleeping. It is such a docile Pokémon that there are children\nwho use its expansive belly as a place to play.' did not happen because the access to the Shakespeare translation service is temporarily disabled"
-}
-```
+The property "hireme.integration.shakespearetran-api.enable" in application.yml can be set to false in order to disable the invocation of the translation service.
+
+

@@ -3,11 +3,7 @@ package com.mau.hireme.mvc.api.rest.open;
 import com.mau.hireme.HireMeApplication;
 import com.mau.hireme.domain.PokemonTranslation;
 import com.mau.hireme.services.IPokemonTranslationService;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.info.Contact;
-import io.swagger.v3.oas.annotations.info.Info;
-import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -41,6 +37,8 @@ public class PokemonTranslationController {
                             schema = @Schema(implementation = PokemonTranslation.class)) }),
             @ApiResponse(responseCode = "404", description = "Pokemon name not found",
                     content = @Content),
+            @ApiResponse(responseCode = "429", description = "The amount of free requests to the backend translation service has been exceeded, retry later",
+                    content = @Content),
             @ApiResponse(responseCode = "502", description = "Problems invoking the backend APIs",
                     content = @Content) })
     public PokemonTranslation getTranslatedDescription(@PathVariable String name) {
@@ -51,6 +49,6 @@ public class PokemonTranslationController {
         // this sample app's health page.
         HireMeApplication.translationServiceInvocations++;
 
-        return pokemonTranslationService.translate(name);
+        return pokemonTranslationService.getTranslatedDescription(name);
     }
 }

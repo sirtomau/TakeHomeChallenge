@@ -4,6 +4,6 @@ import com.mau.hireme.domain.PokemonTranslation;
 
 public interface IPokemonTranslationService {
 
-    PokemonTranslation translate(String name);
+    PokemonTranslation getTranslatedDescription(String name);
 
 }
