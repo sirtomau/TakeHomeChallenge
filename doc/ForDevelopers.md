@@ -44,7 +44,7 @@ More can be done.
 ### Code comments
 Comments are added to portion of code only where there was the need to explain the rationale behind it or where not enough self-readable.
 ### Limitations
-Note that the Shakespeare translator has a limit of 5 calls an hour.  
+Note that the Shakespeare translator (http://funtranslations.com/api/shakespeare) has a limit of 5 calls an hour.  
 After that it returns:
 ```
 Error while invoking the Shakespeare translator:  
