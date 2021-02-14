@@ -10,7 +10,7 @@ It provides (if running on localhost:5000):
 
 ** On the happy/health page there are also links to the REST API documentation.
 
-##More info
+## More info
 * [1 Build and run](doc/BuildAndRun.md)
 * [2 Info for developers](doc/ForDevelopers.md)
 
