@@ -5,7 +5,17 @@ server:
 
 spring:
   jackson:
+    # Meaningful for the auto-mapping naming java<->JSON (to avoid extra annotations in the code)
     property-naming-strategy: SNAKE_CASE
+
+springdoc:
+  api-docs:
+    # If enables is set to true then the links to API documentation will be visible on happy page
+    enabled: true
+    packages-to-scan: com.mau.hireme.mvc.rest
+  swagger-ui:
+    # Next one is meaningful only if api-docs.enabled=true
+    enabled: true
 
 hireme:
   integration:
@@ -13,5 +23,10 @@ hireme:
       base-uri: https://pokeapi.co/api
     shakespearetran-api:
       base-uri: https://api.funtranslations.com/translate
-      # Enabled was introduced to avoid consuming all the daily free calls
-      enabled: true
+      # Enabled was introduced to avoid consuming all the daily free calls, if false the call to the Shakespeare
+      # translation API won't be made and NOT translated text, with a warning, will be returned
+      enabled: false
+
+logging:
+  level:
+    root: INFO

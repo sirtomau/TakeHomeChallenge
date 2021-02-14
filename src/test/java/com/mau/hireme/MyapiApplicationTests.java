@@ -24,9 +24,9 @@ class MyapiApplicationTests {
     @Autowired
     private MockMvc mockMvc;
 
-    private static final String responseForCharizard = "{\"name\":\"charizard\",\"description\":\"Charizard flies around the " +
-            "sky in search of powerful opponents.\\nIt breathes fire of such great heat that it melts anything.\\nHowever, " +
-            "it never turns its fiery breath on any opponent\\nweaker than itself.\"}";
+    private static final String responseForCharizard = "{\"name\":\"charizard\",\"description\":\"Charizard flies 'round " +
+            "the sky in search of powerful opponents. 't breathes fire of such most wondrous heat yond 't melts aught. " +
+            "However,  't nev'r turns its fiery breath on any opponent weaker than itself.\"}";
 
     @Test
     void contextLoads() {

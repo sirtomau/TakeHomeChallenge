@@ -13,5 +13,6 @@ It provides (if running on localhost:5000):
 ## More info
 * [1 Build and run](doc/BuildAndRun.md)
 * [2 Info for developers](doc/ForDevelopers.md)
+* [3 Some screenshots](doc/Screenshots.md)
 
 

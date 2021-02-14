@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502
 public class ShakespeareTranslationException extends RuntimeException {
     public ShakespeareTranslationException() {
-        super("Problems invoking the Shakespeare translation service");
+        super("Problems invoking the Shakespeare translation service, try later");
     }
 }

@@ -64,11 +64,12 @@ public class PokemonServiceClient implements IPokemonServiceClient {
 
             // IMPORTANT - following Oliver's indication I made my own assumption based on a way to
             // pick a description from the list (which for most of the pokemons is pretty long).
+            // I pick the longest in english.
             // This approach gives the same result described in the take-home-challenge's document
             // for Charizard".
             for (FlavorTextEntry flavorTextEntry : flavorTextEntries) {
                 if (Language.EN.equals(flavorTextEntry.getLanguage().getName()) && flavorTextEntry.getFlavorText().length() >= maxLenght) {
-                    // In case two are of the same lenght I use the last one found, that is why I have >= and not >
+                    // In case two are of the same length I use the last one found, that is why I have >= and not >
                     maxLenght = flavorTextEntry.getFlavorText().length();
                     description = flavorTextEntry.getFlavorText();
                 }

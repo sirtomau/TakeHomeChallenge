@@ -2,6 +2,7 @@
 ### Technology used
 * Java
 * Spring Boot
+* Thymeleaf, for the little UI embedded in the micro-service
 ### Development environment used
 * OS: Ubuntu 20.04 running in VirtualBox on Windows (any OS supporting Java and Maven can be used)
 * IDE: IntelljIDEA Community Edition 2020.3 (any other IDE of even a text editor can be used)
@@ -9,3 +10,67 @@
 * Build tool: Maven 3.6.3
 ### Notes
 * Not tested on JDK <11
+### Structure of the SW
+Most of the packages include a README.txt describing what their purpose is.
+The following picture shows the structure in a single view.  
+![Packages structure](img/PackagesTree.png)  
+The main idea is to have a "layered" organization of the SW:  
+mcv --> services --> integration  
+
+Note that in the "api" package only the "rest/open" package includes code. The other packages were added (as a possible option) in case the
+micro-service should become "multi-protocol", or provide also some sort of "premium" secured access beside the free and open one.
+### Configuration of the application
+The "resources" folder includes an "application.yml" file defining the properties that the application relies on.
+Comments are present where needed.
+Those properties, together with all the Spring/Spring-Boot default properties can be overridden (at execution time) in
+the multiple ways made available by the Spring framework.
+### Errors management
+The main idea when it comes to errors and exceptions is to protect the end users of
+the micro-service from errors and error codes that could come from the back-end APIs.
+All errors occurred when invoking the integration layer should be MAPPED into a simple set of readable errors.
+### Caching and performance
+Considering the quite static nature of the data returned by the backend APIs, and in order to improve performance, some 
+caching has been introduced on top of the "Service" layer.
+In order to do so, a Spring feature was used. See the code in the services package for more info.
+The type of cache provider can be replaced with no or minor changes to do the code to make it more configurable and
+better tunable. See https://docs.spring.io/spring-boot/docs/2.4.2/reference/html/spring-boot-features.html#boot-features-caching for more info.
+### Test code
+The SW is quite small and not much to test, unless we include in the testing the integration with the backend APIs in order to make sure that changes on their side don't break the behavior of our micro-service.  
+If there was more logic in the "Service" layer Mockito could be used to emulate the "Integration" layer and write unit test code testing that logic.
+This approach could also be useful if the build and the testing occur in an environment where the backend APIs are not reachable.
+There are a few examples present in the code.
+More can be done.
+### Code comments
+Comments are added to portion of code only where there was the need to explain the rationale behind it or where not enough self-readable.
+### Limitations
+Note that the Shakespeare translator has a limit of 5 calls an hour.  
+After that it returns:
+```
+Error while invoking the Shakespeare translator:  
+429 Too Many Requests:  
+[{
+"error": {
+"code": 429,
+"message": "Too Many Requests: Rate limit of 5 requests per hour exceeded. Please wait for 59 minutes and 37 seconds."
+}
+}]
+```
+In order to keep using/testing the application after that, you can set the property "hireme.integration.shakespearetran-api.enable"
+to false in application.yml. The Pokemon's description would be returned but not translated.  
+If number of calls exceeded and property set to true the response will be:
+```
+{
+"timestamp": "2021-02-14T14:46:31.179+00:00",
+"status": 502,
+"error": "Bad Gateway",
+"message": "Problems invoking the Shakespeare translation service, try later",
+"path": "/pokemon/snorlax"
+}
+```
+If number of calls exceeded and property set to false the response will be:
+```
+{
+"name": "snorlax",
+"description": "The translation for 'Snorlax’s typical day consists of nothing more than eating and\nsleeping. It is such a docile Pokémon that there are children\nwho use its expansive belly as a place to play.' did not happen because the access to the Shakespeare translation service is temporarily disabled"
+}
+```

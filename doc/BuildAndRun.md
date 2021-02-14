@@ -1,8 +1,8 @@
 ## Build and run it with Docker
 
 * Pre-requirement: Docker already installed locally
-* Download the project.
-* If needed unzip it.
+* Download the project
+* If needed unzip it
 * Open a terminal (or cmd) window and go to the folder with the pom.xml (the root of the project)
 * If on LINUX run:
   ```
@@ -12,14 +12,14 @@
   ```
   ./run_with_docker.sh  
   ```
-Make sure the scripts have execution rights.
+  Make sure the scripts have execution rights.
 * If on OTHER OPERATING SYSTEMS simply use the Docker commands you find in the .sh scripts
 
 ## Build and run with local JDK/Maven
 
 * Pre-requirement: JDK and Maven installed locally
-* Download the project.
-* If needed unzip it.
+* Download the project
+* If needed unzip it
 * Open a terminal (or cmd) window and go to the folder with the pom.xml
   ```
   mvn spring-boot:run -DskipTests

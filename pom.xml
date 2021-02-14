@@ -14,7 +14,7 @@
 	<name>hireme</name>
 	<description>My API</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -41,7 +41,7 @@
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.5.2</version>
+			<version>1.5.4</version>
 		</dependency>
 
 		<dependency>

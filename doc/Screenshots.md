@@ -1,0 +1,8 @@
+### Happy page
+![Home](img/Screenshot-home.png)
+### OpenApi documentation
+![OpenApi](img/Screenshot-OpenApi_doc.png)
+### Swagger UI
+![Swagger](img/Screenshot-SwaggerUI.png) 
+### API Call
+To be added

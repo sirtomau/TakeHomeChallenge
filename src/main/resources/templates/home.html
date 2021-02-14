@@ -1,15 +1,19 @@
 <h4>Happy page of the microservice Pokemon Translator</h4>
 <br/>
-<b>Documentation:</b>
-<ul>
-    <li><a href="/v3/api-docs/">OpenAPI definition</a></li>
-    <li><a href="/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/">Swagger</a></li>
-</ul>
-<br/>
+<block th:if="${@environment.getProperty('springdoc.api-docs.enabled')=='true'}">
+    <b>Documentation:</b>
+    <ul>
+        <li><a href="/v3/api-docs/">OpenAPI definition</a></li>
+        <block th:if="${@environment.getProperty('springdoc.swagger-ui.enabled')=='true'}">
+            <li><a href="/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/">Swagger</a></li>
+        </block>
+    </ul>
+    <br/>
+</block>
 <b>Run-time info**:</b><br/>
 <br/>Host: <span th:text="${T(com.mau.hireme.HireMeApplication).hostName}" /><br/>
 <br/>Up since: <span th:text="${T(com.mau.hireme.HireMeApplication).upSince}" /><br/>
 <br/>Total invocations of pokemon translation api: <span th:text="${T(com.mau.hireme.HireMeApplication).translationServiceInvocations}" /><br/>
 <br/>Total invocations of the backend pokeapi: <span th:text="${T(com.mau.hireme.HireMeApplication).pokeapiInvocations}" /><br/>
 <br/>Total invocations of the backend S. translation api: <span th:text="${T(com.mau.hireme.HireMeApplication).translationapiInvocations}" /><br/>
-<br/>** Info usually collected with tools that are external to the app, done here just to quickly see some statistics.
+<br/>** Info often collected with tools that are external to the app, done here just to quickly see some statistics.
