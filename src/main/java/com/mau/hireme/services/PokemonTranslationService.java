@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 public class PokemonTranslationService implements IPokemonTranslationService {
 
     @Autowired
-    IPokemonServiceClient pokemonServiceClient;
+    private IPokemonServiceClient pokemonServiceClient;
 
     @Autowired
-    ITranslationServiceClient translationServiceClient;
+    private ITranslationServiceClient translationServiceClient;
 
     @Override
     @Cacheable("translations")
